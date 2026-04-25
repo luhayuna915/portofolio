@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="main-media/logo.png">
+    <title>Projects - GIS Development</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Memuat Font Poppins dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Memuat Font Awesome untuk ikon (misalnya ikon rumah, panah) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style-develop.css">
+</head>
+
+<body class="min-h-screen relative pb-40">
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-logo">
+            <img class="profile-pic" src="main-media/logo.png" alt="Luh Ayu">
+            <span>Luh Ayu</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="beranda.html"><i class="fas fa-home"></i></a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="experience.html">Experience</a></li>
+
+            <!-- Menu Dropdown Projects (Diaktifkan) -->
+            <li class="relative dropdown-trigger active">
+                <a class="active">Projects</a>
+                <div class="dropdown-menu">
+                    <!-- Link "GIS Analysis" tidak aktif di halaman ini -->
+                    <a href="projects-analysis.html">GIS Analysis</a>
+                    <div class="separator"></div>
+                    <!-- Link "GIS Development" diaktifkan (active-dropdown) -->
+                    <a href="projects-development.html" class="active-dropdown">GIS Development</a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="content-container mt-10">
+
+        <!-- Kontainer pembungkus untuk memposisikan teks di tengah (text-center) -->
+        <div class="text-center">
+            <!-- Header Utama - Diperbarui menjadi GIS Development -->
+            <h1 class="main-header" style="display: inline-block;">
+                Projects - GIS Development
+            </h1>
+
+            <!-- Tagline/Skills - Diperbarui dan dibuat tebal (font-bold) -->
+            <p class="skills-tagline font-bold">
+                Website GIS (HTML • CSS • JAVASCRIPT • PHP • Leaflet • ArcGIS Online • Code Igniter) • Mobile (Java) •
+                Desktop (C# • VB)
+            </p>
+        </div>
+
+        <!-- Galeri Proyek dengan Navigasi Samping -->
+        <section class="relative projects-grid-container px-12 lg:px-0">
+
+            <!-- Tombol Navigasi Kiri -->
+            <div id="prevBtn" onclick="changePage(-1)" class="slider-nav-button slider-nav-left">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <!-- Grid Kartu -->
+            <div id="projectGrid"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch fade-in-grid">
+                <!-- Konten diisi via JS -->
+            </div>
+
+            <!-- Tombol Navigasi Kanan -->
+            <div id="nextBtn" onclick="changePage(1)" class="slider-nav-button slider-nav-right">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <!-- Page Counter (Sekarang berada di luar wrapper relative agar tidak mempengaruhi posisi tombol) -->
+            <div class="text-center mt-12 text-gray-500 font-semibold tracking-wide">
+                HALAMAN <span id="currentPageLabel" class="text-teal-700">1</span> DARI <span
+                    id="totalPagesLabel">1</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const allProjects = [
+            {
+                category: "Final Project",
+                title: "Web GIS: Badung I-Map, a platform created to present data from ...",
+                img: "sampul-develop/fp-web-imap.jpg",
+                link: "https://elyueich.github.io/BD-PROYEK-AKHIR/"
+            },
+            // {
+            //     category: "Course Project",
+            //     title: "Development of a Public Transportation Mapping Information System ...",
+            //     img: "sampul-develop/cp-pgpb-mobile-pt.jpg",
+            //     link: "#"
+            // },
+            // {
+            //     category: "Course Project",
+            //     title: "Development of a standalone desktop application",
+            //     img: "sampul-develop/cp-pgd-desktop.jpg",
+            //     link: "#"
+            // },
+            {
+                category: "BBMKG Intern",
+                title: "Development of real-time hourly rainfall information from the BMKG AWS ...",
+                img: "sampul-develop/intern-bbmkg-web-rainwatch.png",
+                link: "https://rainwatch.bbmkg4.com/"
+            }
+
+        ];
+
+        const itemsPerPage = 3;
+        let currentPage = 0;
+        const totalPages = Math.ceil(allProjects.length / itemsPerPage);
+
+        function renderProjects() {
+            const grid = document.getElementById('projectGrid');
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = allProjects.slice(start, end);
+
+            grid.innerHTML = '';
+            grid.classList.remove('fade-in-grid');
+            void grid.offsetWidth;
+            grid.classList.add('fade-in-grid');
+
+            currentItems.forEach(p => {
+                grid.innerHTML += `
+                    <div class="project-card">
+                        <a href="${p.link}" class="flex flex-col h-full" style="text-decoration: none; color: inherit;">
+                            <div class="card-placeholder-dev">
+                                <img src="${p.img}" class="img-sampul-dev" onerror="this.src='https://via.placeholder.com/400x300?text=GIS+Project'">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-content-title">
+                                    <p class="card-title">${p.category}</p>
+                                    <p class="card-subtitle">${p.title}</p>
+                                </div>
+                                <div class="arrow-button">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+            });
+
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('currentPageLabel').innerText = currentPage + 1;
+            document.getElementById('totalPagesLabel').innerText = totalPages;
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            currentPage === 0 ? prevBtn.classList.add('disabled') : prevBtn.classList.remove('disabled');
+            currentPage === totalPages - 1 ? nextBtn.classList.add('disabled') : nextBtn.classList.remove('disabled');
+        }
+
+        function changePage(step) {
+            currentPage += step;
+            renderProjects();
+            // window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
+
+</body>
+
+</html>

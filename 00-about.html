@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="main-media/logo.png">
+    <title>About Luh Ayu</title>
+    <!-- Memuat Font Poppins dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Memuat Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styleabout.css">
+</head>
+
+<body>
+
+    <!-- NAVIGASI (Diupdate: Link 'About' kini Aktif) -->
+    <nav>
+        <div class="nav-logo">
+            <img class="profile-pic-nav" src="main-media/logo.png" alt="Luh Ayu">
+            <span>Luh Ayu</span>
+        </div>
+
+        <ul class="nav-links">
+            <!-- Icon Home tidak aktif -->
+            <li><a href="00-beranda.html"><i class="fas fa-home"></i></a></li>
+            <!-- About aktif -->
+            <li><a href="00-about.html" class="active">About</a></li>
+            <li><a href="00-experience.html">Experience</a></li>
+            <li class="relative dropdown-trigger">
+                <a>Projects</a>
+                <div class="dropdown-menu">
+                    <a href="01-projects-analysis.html">GIS Analysis</a>
+                    <div class="separator"></div>
+                    <a href="02-projects-development.html">GIS Development</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- KONTEN UTAMA HALAMAN ABOUT -->
+    <section class="about-section">
+        <div class="about-container">
+
+            <!-- Kolom Kiri: Informasi -->
+            <div class="left-column">
+
+                <h1 class="page-title">About Me</h1>
+                <p class="intro-text">
+                    My name is <strong>Luh Ayu Nurul Azhiima</strong>, fresh graduate with a Bachelor's degree in
+                    Geographic Information Systems from Universitas Gadjah Mada. I am passionate about spatial data and
+                    interested in working as a <strong>GIS Analyst</strong> or <strong>GIS Programmer</strong>.
+                </p>
+
+                <!-- Education -->
+                <div id="education">
+                    <h2 class="section-title">Education</h2>
+                    <div class="timeline">
+                        <!-- Item 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Universitas Gadjah Mada</h3>
+                                <span class="year">2021 - 2025</span>
+                                <p>Bachelor of Geographic Information System</p>
+                                <span class="gpa">GPA 3.87/4.00</span>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>SMA Negeri 1 Polewali</h3>
+                                <span class="year">2018 - 2021</span>
+                                <p>Mathematics and Natural Sciences</p>
+                                <span class="gpa">Final Grade 91.79/100.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div id="skills">
+                    <h2 class="section-title">Skills</h2>
+                    <div class="skills-wrapper">
+                        <span class="skill-tag">Mapping & Cartography</span>
+                        <span class="skill-tag">Spatial Analysis</span>
+                        <span class="skill-tag">Image Interpolation</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">HTML, CSS, JS</span>
+                        <span class="skill-tag">Python & PHP</span>
+                        <span class="skill-tag">Database Management</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div id="tools">
+                    <h2 class="section-title">Tools</h2>
+                    <div class="tools-wrapper">
+                        <img src="https://logodix.com/logo/501980.png" alt="ArcGIS">
+                        <img src="https://img.icons8.com/?size=100&id=XYfnu6IsTKZr&format=png&color=7CB02D" alt="QGIS">
+                        <img src="https://img.icons8.com/?size=100&id=iWw83PVcBpLw&format=png&color=000000" alt="canva">
+                        <img src="https://img.icons8.com/?size=100&id=vIbsCQXkSp6l&format=png&color=000000" alt="microsoft">
+                        <img src="https://img.icons8.com/?size=100&id=9OGIyU8hrxW5&format=png&color=000000" alt="VSCode">
+                        <img src="https://cdn.icon-icons.com/icons2/1508/PNG/512/earth-engine_104264.png" alt="GEE">
+                        <img src="https://img.icons8.com/?size=100&id=J0SgMWzAxqFj&format=png&color=000000" alt="jupyter">
+                        <img src="https://images.icon-icons.com/1381/PNG/512/pgadmin_94126.png" alt="pgadmin">
+                        <img src="https://img.icons8.com/?size=100&id=04OFrkjznvcd&format=png&color=000000" alt="androidstudio">
+                        <img src="https://static.vecteezy.com/system/resources/previews/013/948/546/original/capcut-logo-on-transparent-white-background-free-vector.jpg" alt="capcut">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Kolom Kanan: Foto -->
+            <div class="right-column">
+                <div class="photo-container">
+                    <!-- Background Shape -->
+                    <div class="photo-bg"></div>
+                    <!-- Foto Utama -->
+                    <img src="main-media/foto-aboutme.jpg" alt="Foto Profil Luh Ayu"
+                        class="main-photo">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

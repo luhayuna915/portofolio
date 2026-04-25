@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="main-media/logo.png">
+    <title>Projects - GIS Analysis</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Memuat Font Poppins dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Memuat Font Awesome untuk ikon (misalnya ikon rumah, panah) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style-g-ana.css">
+</head>
+
+<body class="min-h-screen relative pb-20">
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-logo">
+            <img class="profile-pic" src="main-media/logo.png" alt="Luh Ayu">
+            <span>Luh Ayu</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="00-beranda.html"><i class="fas fa-home"></i></a></li>
+            <li><a href="00-about.html">About</a></li>
+            <li><a href="00-experience.html">Experience</a></li>
+
+            <!-- Menu Dropdown Projects (Diaktifkan) -->
+            <li class="relative dropdown-trigger active">
+                <a class="active">Projects</a>
+                <div class="dropdown-menu">
+                    <!-- Link "GIS Analysis" diaktifkan (active-dropdown) -->
+                    <a href="01-projects-analysis.html" class="active-dropdown">GIS Analysis</a>
+                    <div class="separator"></div>
+                    <a href="02-projects-development.html">GIS Development</a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="content-container mt-10">
+
+        <!-- Kontainer pembungkus untuk memposisikan teks di tengah (text-center) -->
+        <div class="text-center">
+            <!-- Header Utama -->
+            <h1 class="main-header" style="display: inline-block;">
+                Projects - GIS Analysis
+            </h1>
+
+            <!-- Tagline/Skills - DITAMBAHKAN KELAS font-bold -->
+            <p class="skills-tagline font-bold">
+                Spatial Analysis • Map Visualization • 3D Modeling • Interpolation • Coordinate Transformation •
+                Digitization • Cartography
+            </p>
+        </div>
+
+        <!-- Section Utama -->
+        <section class="max-w-5xl mx-auto mt-12 px-4 md:px-0">
+
+            <!-- Wrapper Khusus Grid agar Tombol Navigasi berada di tengah Grid Kartu saja -->
+            <div class="relative">
+                <!-- Nav Kiri -->
+                <div id="prevBtn" onclick="changePage(-1)" class="slider-nav-button slider-nav-left">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+
+                <!-- Grid Kartu -->
+                <div id="projectGrid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch fade-in-grid">
+                    <!-- Konten diisi via JS -->
+                </div>
+
+                <!-- Nav Kanan -->
+                <div id="nextBtn" onclick="changePage(1)" class="slider-nav-button slider-nav-right">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Page Counter (Sekarang berada di luar wrapper relative agar tidak mempengaruhi posisi tombol) -->
+            <div class="text-center mt-12 text-gray-500 font-semibold tracking-wide">
+                HALAMAN <span id="currentPageLabel" class="text-teal-700">1</span> DARI <span
+                    id="totalPagesLabel">1</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Wave/Curve at the bottom (untuk estetika) -->
+    <div class="wave-bottom"></div>
+
+    <script>
+        const allProjects = [
+            {
+                category: "Research",
+                title: "Spatio-Temporal Dynamics of Dengue Cases in ...",
+                img: "sampul-g-ana/research-vulnerability-DHF.jpg",
+                link: "011-research-v-dengue.html"
+            },
+            {
+                category: "Freelance",
+                title: "Build-Area Digitization, Cirebon City Project with PT. Geo Survey ...",
+                img: "sampul-g-ana/freelance-digit-cirebon.jpeg",
+                link: "#"
+            },
+            {
+                category: "Final Project",
+                title: "Mapping Coastal Line Changes and Physical Vulnerability of ...",
+                img: "sampul-g-ana/fp-shore-changes-vulnerability.jpg",
+                link: "011-fp-sc-v-coastal.html"
+            },
+            {
+                category: "PUTR Intern",
+                title: "Land Development Capability Map",
+                img: "sampul-g-ana/intern-putr-landdev.png",
+                link: "011-intern-putr-landdev.html"
+            },
+            {
+                category: "PUTR Intern",
+                title: "Slope Gradient Map",
+                img: "sampul-g-ana/intern-putr-slope.png",
+                link: "011-intern-putr-slope.html"
+            },
+            {
+                category: "PUTR Intern",
+                title: "Runoff Intensity Map",
+                img: "sampul-g-ana/intern-putr-runoff.png",
+                link: "011-intern-putr-runoff.html"
+            },
+            {
+                category: "PUTR Intern",
+                title: "Geological Map",
+                img: "sampul-g-ana/intern-putr-groundwater.png",
+                link: "011-intern-putr-groundwater.html"
+            },
+            {
+                category: "PUTR Intern",
+                title: "Rainfall Map",
+                img: "sampul-g-ana/intern-putr-rainfall.png",
+                link: "011-intern-putr-rainfall.html"
+            },
+            {
+                category: "KKN",
+                title: "Mapping of Public Facilities in Kasai Village 2024",
+                img: "sampul-g-ana/kkn-public-facility.png",
+                link: "011-kkn-publicfacility.html"
+            },
+            {
+                category: "KKN",
+                title: "Mapping of Road Infrastructure and Street Lighting in Kasai Village 2024",
+                img: "sampul-g-ana/kkn-road.png",
+                link: "011-kkn-road.html"
+            },
+            {
+                category: "BBMKG Intern",
+                title: "Analyze Areas Affected by Tidal Flooding (ROB) in Kendari City",
+                img: "sampul-g-ana/intern-bbmkg4-hightides.png",
+                link: "011-intern-bbmkg4-hightides.html"
+            },
+            {
+                category: "BBMKG Intern",
+                title: "Analyze Thermal Comfort Levels using the Temperature Humidity Index (THI) ...",
+                img: "sampul-g-ana/intern-bbmkg4-thermal.png",
+                link: "011-intern-bbmkg4-thi.html"
+            }
+
+        ];
+
+        const itemsPerPage = 6;
+        let currentPage = 0;
+        const totalPages = Math.ceil(allProjects.length / itemsPerPage);
+
+        function renderProjects() {
+            const grid = document.getElementById('projectGrid');
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = allProjects.slice(start, end);
+
+            grid.innerHTML = '';
+            grid.classList.remove('fade-in-grid');
+            void grid.offsetWidth;
+            grid.classList.add('fade-in-grid');
+
+            currentItems.forEach(p => {
+                grid.innerHTML += `
+                    <div class="project-card">
+                        <a href="${p.link}" class="flex flex-col h-full" style="text-decoration: none; color: inherit;">
+                            <div class="card-placeholder-g-ana">
+                                <img src="${p.img}" class="img-sampul-g-ana" onerror="this.src='https://via.placeholder.com/400x300?text=GIS+Project'">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-content-title">
+                                    <p class="card-title">${p.category}</p>
+                                    <p class="card-subtitle">${p.title}</p>
+                                </div>
+                                <div class="arrow-button">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+            });
+
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('currentPageLabel').innerText = currentPage + 1;
+            document.getElementById('totalPagesLabel').innerText = totalPages;
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            currentPage === 0 ? prevBtn.classList.add('disabled') : prevBtn.classList.remove('disabled');
+            currentPage === totalPages - 1 ? nextBtn.classList.add('disabled') : nextBtn.classList.remove('disabled');
+        }
+
+        function changePage(step) {
+            currentPage += step;
+            renderProjects();
+            // window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="main-media/logo.png">
+    <title>GIS Analysis Projects - PUTR Intern</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Memuat Font Poppins dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Memuat Font Awesome untuk ikon (misalnya ikon rumah, panah) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style-card-ana.css">
+    <link rel="stylesheet" href="style-g-ana.css">
+</head>
+
+<body class="min-h-screen relative">
+    <div id="header-target"></div>
+
+    <main class="content-container mt-10">
+        <!-- Kontainer pembungkus untuk memposisikan teks di tengah (text-center) -->
+        <div class="text-center">
+            <!-- Header Utama -->
+            <h1 class="proj-title" style="display: inline-block;">
+                Rainfall Mapping in the Mandalle Urban Area in 2024
+            </h1>
+        </div>
+
+        <div class="full-page-container" style="flex-direction: row;">
+            <div class="fixed-width-card">
+                <img src="project-g-ana-media/map/map-intern-putr-rainfall.png" alt="GIS Project Display">
+            </div>
+            <!-- <div class="fixed-width-card">
+                <img src="project-g-ana/research-v-dbd-2026.png" alt="GIS Project Display">
+            </div> -->
+        </div>
+
+        <div id="image-overlay" class="overlay">
+            <span class="close-btn">&times;</span>
+            <img class="overlay-content" id="full-image">
+        </div>
+
+        <div class="menu-detail-container" style="display: none;">
+            <div id="btn-introduction" class="menu-detail-container-div" data-label="Introduction"
+                onclick="toggleUniversal('konten-introduction', this)">
+                <i class="fa-regular fa-lightbulb"></i>
+            </div>
+            <div id="btn-tools" class="menu-detail-container-div" data-label="Tools"
+                onclick="toggleUniversal('konten-tools', this)"><i class="fa-solid fa-toolbox"></i></div>
+            <div id="btn-data" class="menu-detail-container-div" data-label="Data"
+                onclick="toggleUniversal('konten-data', this)"><i class="fa-brands fa-buffer"></i></div>
+            <div id="btn-method" class="menu-detail-container-div" data-label="Method"
+                onclick="toggleUniversal('konten-method', this)"><i class="fa-solid fa-bezier-curve"></i></div>
+            <div id="btn-rnd" class="menu-detail-container-div" data-label="Results and Discussions"
+                onclick="toggleUniversal('konten-rnd', this)"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        </div>
+
+        <div class="menu-introduction" id="konten-introduction">
+            <div class="menu-introduction-card">
+                <div class="introduction-card-header">
+                    <h3 class="introduction-card-title">Introduction</h3>
+                    <button type="button" class="introduction-close-icon"
+                        onclick="closeUniversal('konten-introduction', 'btn-introduction')">×</button>
+                </div>
+                <div class="introduction-card-body">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="menu-tdm">
+            <div id="konten-tools" class="menu-tdm-card">
+                <div class="tdm-card-header">
+                    <h3 class="tdm-card-title">Tools</h3>
+                    <button class="tdm-close-icon" onclick="closeUniversal('konten-tools', 'btn-tools')">×</button>
+                </div>
+                <div class="tdm-card-body">
+
+                </div>
+            </div>
+            <div id="konten-data" class="menu-tdm-card">
+                <div class="tdm-card-header">
+                    <h3 class="tdm-card-title">Data</h3>
+                    <button class="tdm-close-icon" onclick="closeUniversal('konten-data', 'btn-data')">×</button>
+                </div>
+                <div class="tdm-card-body">
+
+                </div>
+            </div>
+            <div id="konten-method" class="menu-tdm-card">
+                <div class="tdm-card-header">
+                    <h3 class="tdm-card-title">Method</h3>
+                    <button class="tdm-close-icon" onclick="closeUniversal('konten-method', 'btn-method')">×</button>
+                </div>
+                <div class="tdm-card-body">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="konten-rnd" class="menu-rnd">
+            <div class="menu-rnd-card">
+                <div class="tdm-card-header">
+                    <h3 class="tdm-card-title">Results and Discussions</h3>
+                    <button class="tdm-close-icon" onclick="closeUniversal('konten-rnd', 'btn-rnd')">×</button>
+                </div>
+                <div class="tdm-card-body">
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="control-card-ana.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,353 @@
+/* Variabel CSS dan Global Reset */
+:root {
+    --bg-color: #eee9e7;
+    /* Warna krem */
+    --accent-color: #008080;
+    /* Warna teal */
+    --text-color: #333333;
+    --link-color: #04757B;
+    /* Warna link/teal gelap */
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* overflow: hidden; */
+}
+
+/* -------------------------------------- */
+/* --- NAVIGASI --- */
+/* -------------------------------------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    background-color: var(--bg-color);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--link-color);
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #c7d2c3;
+    border: 2px solid var(--link-color);
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+nav .nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+nav .nav-links a i {
+    font-size: 1.2rem;
+}
+
+/* Underline animation for main navigation links */
+nav .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0px;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out;
+}
+
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after {
+    transform: scaleX(1);
+}
+
+/* -------------------------------------- */
+/* --- DROPDOWN MENU --- */
+/* -------------------------------------- */
+.dropdown-trigger {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    /* Posisikan ke kanan untuk tampilan Proyek */
+    min-width: 150px;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-trigger:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-menu a {
+    color: var(--link-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    display: block;
+    padding-bottom: 0.5rem;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a.active-dropdown {
+    /* Warna latar belakang dan garis bawah yang sesuai dengan gambar */
+    background-color: #e0f2f1;
+    /* Hijau muda/teal muda */
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--link-color);
+}
+
+.dropdown-menu a.active-dropdown {
+    font-weight: 700;
+}
+
+.dropdown-menu a::after {
+    display: none;
+}
+
+.dropdown-menu .separator {
+    height: 1px;
+    background-color: #ddd;
+    margin: 0.5rem 0;
+}
+
+/* -------------------------------------- */
+/* --- HEADER KONTEN UTAMA --- */
+/* -------------------------------------- */
+/* Kontainer untuk membatasi lebar konten utama */
+.content-container {
+    max-width: 1280px;
+    /* Mirip dengan max-w-7xl */
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    /* px-6 */
+    padding-right: 1.5rem;
+    /* px-6 */
+}
+
+.main-header {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--link-color);
+    margin-bottom: 0.5rem;
+    /* display: inline-block; - Dibiarkan agar garis bawah hanya selebar teks */
+    padding-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+    .main-header {
+        font-size: 3rem;
+    }
+}
+
+.skills-tagline {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 2.5rem;
+}
+
+/* -------------------------------------- */
+/* --- KARTU PROYEK (PROJECT CARD) --- */
+/* -------------------------------------- */
+.project-card {
+    background-color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-placeholder-dev {
+    width: 100%;
+    height: 150px;
+    /* aspect-ratio: 4 / 3; */
+    overflow: hidden;
+    background-color: #ccc;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.img-sampul-dev {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    align-items: center;
+}
+
+.card-content {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content-title {
+    width: 300px;
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.card-subtitle {
+    font-size: 0.875rem;
+    /* text-sm */
+    color: #555;
+    line-height: 1.2;
+    margin-top: 0.25rem;
+}
+
+.arrow-button {
+    /* Gaya tombol panah (teal background, rounded) */
+    background-color: var(--link-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.arrow-button:hover {
+    background-color: var(--accent-color);
+}
+
+/* -------------------------------------- */
+/* --- NAVIGASI SLIDER Samping --- */
+/* -------------------------------------- */
+.slider-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: var(--link-color);
+    color: white;
+
+    /* padding: 1rem 0.75rem; */
+
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0.7;
+
+    transition: opacity 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider-nav-button:hover {
+    /* opacity: 1; */
+    background-color: var(--accent-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav-left {
+    left: -60px;
+    /* Posisikan di luar grid */
+}
+
+.slider-nav-right {
+    right: -60px;
+    /* Posisikan di luar grid */
+}
+
+.slider-nav-button.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* Responsif untuk menyembunyikan panah di layar kecil dan menyesuaikan margin */
+@media (max-width: 1200px) {
+    .slider-nav-left {
+        left: 10px;
+    }
+
+    .slider-nav-right {
+        right: 10px;
+    }
+
+}
+
+.fade-in-grid {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="main-media/logo.png">
+    <title>My Experience</title>
+    <!-- Memuat Tailwind CSS (Dipertahankan untuk layout konten, grid, dan responsivitas) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Memuat Font Poppins dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Memuat Font Awesome untuk ikon (misalnya ikon rumah) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Variabel CSS dan Global Reset dari halaman beranda */
+        :root {
+            --bg-color: #eee9e7;
+            /* Warna krem */
+            --accent-color: #008080;
+            /* Warna teal */
+            --text-color: #333333;
+            --link-color: #04757B;
+            /* Warna link/teal gelap */
+            --wave-color-dark: #008080;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Kontainer untuk membatasi lebar konten utama */
+        .content-container {
+            max-width: 1280px;
+            /* Mirip dengan max-w-7xl */
+            margin: 0 auto;
+            padding-left: 1.5rem;
+            /* px-6 */
+            padding-right: 1.5rem;
+            /* px-6 */
+        }
+
+        /* -------------------------------------- */
+        /* --- NAVIGASI (Disesuaikan dengan background) --- */
+        /* -------------------------------------- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px;
+            /* Sedikit penyesuaian padding agar lebih lega */
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            /* Fixed agar navbar tetap di atas saat scroll */
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background-color: var(--bg-color);
+            /* Agar konten tidak terlihat di belakang nav saat scroll */
+            transition: box-shadow 0.3s;
+        }
+
+        /* Efek bayangan saat di-scroll (opsional, agar nav jelas) */
+        nav.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--link-color);
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #c7d2c3;
+            border: 2px solid var(--link-color);
+        }
+
+        .profile-pic-nav {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #c7d2c3;
+            border: 2px solid var(--link-color);
+        }
+
+        nav .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: var(--link-color);
+            font-weight: 700;
+            /* Sedikit lebih tebal */
+            font-size: 1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+        }
+
+        nav .nav-links a:hover::after,
+        nav .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        /* -------------------------------------- */
+        /* --- DROPDOWN MENU (NEW) --- */
+        /* -------------------------------------- */
+        .dropdown-trigger {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            /* Position right below the link */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Center the dropdown */
+            min-width: 150px;
+            background-color: white;
+            /* Memberikan kontras dengan background krem */
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-trigger:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu a {
+            color: var(--link-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            display: block;
+            /* Memastikan link mengisi lebar menu */
+            /* Reset padding-bottom to avoid extra space */
+            padding-bottom: 0.5rem;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--bg-color);
+            /* Efek hover lembut */
+            color: var(--link-color);
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+            /* Menghilangkan animasi underline di dalam dropdown */
+        }
+
+        .dropdown-menu .separator {
+            height: 1px;
+            background-color: #ddd;
+            margin: 0.5rem 0;
+        }
+
+        /* -------------------------------------- */
+        /* --- HEADER KONTEN UTAMA (Koreksi) --- */
+        /* -------------------------------------- */
+        .main-header {
+            /* Menggantikan Tailwind H1 dengan style Poppins yang solid */
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--link-color);
+            margin-bottom: 2rem;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            border-bottom: 4px solid var(--accent-color);
+            /* Garis bawah yang tebal */
+        }
+
+        @media (min-width: 768px) {
+            .main-header {
+                font-size: 3rem;
+            }
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            /* text-3xl */
+            font-weight: 700;
+            /* font-bold */
+            margin-bottom: 2rem;
+            /* mb-8 */
+            color: var(--text-color);
+        }
+
+        /* -------------------------------------- */
+        /* --- TIMELINE (Kerapatan dan Dot Disesuaikan) --- */
+        /* -------------------------------------- */
+        .timeline-line {
+            width: 2px;
+            background-color: var(--link-color);
+            /* Warna teal gelap */
+        }
+
+        .timeline-dot {
+            width: 8px;
+            /* Dikecilkan dari 10px */
+            height: 8px;
+            /* Dikecilkan dari 10px */
+            background-color: var(--link-color);
+            border-radius: 50%;
+            position: absolute;
+            left: -3px;
+            /* Disesuaikan agar tetap terpusat di garis 2px */
+            top: 0;
+            transform: translateY(-50%);
+        }
+
+        .timeline-title {
+            color: var(--text-color);
+            font-weight: 600;
+            /* Sedikit lebih tebal dari Poppins 500 */
+        }
+
+        .timeline-role {
+            color: var(--accent-color);
+            /* Warna teal utama */
+            font-weight: 500;
+        }
+
+        /* -------------------------------------- */
+        /* --- WAVE/KURVA (Warna Konsisten) --- */
+        /* -------------------------------------- */
+        .wave-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background-color: var(--wave-color-dark);
+            /* Warna teal tua */
+            clip-path: polygon(0 80%, 100% 100%, 100% 100%, 0 100%);
+            z-index: -10;
+        }
+
+        /* Responsiveness for timeline on small screens */
+        @media (max-width: 640px) {
+            .work-section {
+                flex-direction: column;
+            }
+
+            .work-timeline-container {
+                width: 100%;
+            }
+
+            .work-image-grid {
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .org-timeline-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen relative pb-40">
+
+    <!-- Navbar (Struktur Sesuai Snippet Baru) -->
+    <nav>
+        <div class="nav-logo">
+            <img class="profile-pic" src="main-media/logo.png" alt="Luh Ayu">
+            <span>Luh Ayu</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="00-beranda.html"><i class="fas fa-home"></i></a></li>
+            <li><a href="00-about.html">About</a></li>
+            <li><a href="00-experience.html" class="active">Experience</a></li>
+
+            <!-- Menu Dropdown Projects (NEW) -->
+            <li class="relative dropdown-trigger">
+                <a>Projects</a>
+                <div class="dropdown-menu">
+                    <a href="01-projects-analysis.html">GIS Analysis</a>
+                    <div class="separator"></div>
+                    <a href="02-projects-development.html">GIS Development</a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="content-container mt-40">
+
+        <!-- Header Utama (Menggunakan Kelas CSS baru) -->
+        <h1 class="main-header">
+            My Experience
+        </h1>
+
+        <!-- 1. Work Section -->
+        <section class="mb-16">
+            <h2 class="section-title">Work</h2>
+            <div class="flex flex-col sm:flex-row gap-8 work-section">
+
+                <!-- Work Timeline (Left) -->
+                <div class="w-full sm:w-1/2 work-timeline-container relative pl-4">
+                    <!-- Garis Waktu Utama -->
+                    <div class="absolute top-0 bottom-0 left-0 timeline-line"></div>
+
+                    <!-- Item 1: Dinas Pekerjaan Umum -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Sep - Dec 2024</p>
+                        <h3 class="text-lg timeline-title">Dinas Pekerjaan Umum dan Tata Ruang, Pangkep Region</h3>
+                        <p class="timeline-role">Urban Planning Intern</p>
+                    </div>
+
+                    <!-- Item 2: Balai Besar Meteorologi -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Feb - June 2024</p>
+                        <h3 class="text-lg timeline-title">Balai Besar Meteorologi Klimatologi dan Geofisika Region IV,
+                            Makassar</h3>
+                        <p class="timeline-role">Climatology Intern</p>
+                    </div>
+
+                    <!-- Item 3: Universitas Gadjah Mada -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Aug - Dec 2023</p>
+                        <h3 class="text-lg timeline-title">Universitas Gadjah Mada, Yogyakarta</h3>
+                        <p class="timeline-role">Cartography Practicum Assistant</p>
+                    </div>
+
+                    <!-- Item 4: Dinas Komunikasi Informatika -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Jan 2023</p>
+                        <h3 class="text-lg timeline-title">Dinas Komunikasi Informatika dan Persandian Negara, Polewali
+                            Mandar</h3>
+                        <p class="timeline-role">Statistik Intern</p>
+                    </div>
+                </div>
+
+                <!-- Work Images (Right) - Warna placeholder disesuaikan -->
+                <div class="w-full sm:w-1/2 work-image-grid grid grid-cols-2 gap-1">
+                    <img src="img/PUTR01.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <img src="img/PUTR02.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <img src="img/BMKG01.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <img src="img/BMKG02.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. Organization/Community Section -->
+        <section class="mb-16">
+            <h2 class="section-title">Organization/Community/UKM</h2>
+            <div class="flex flex-col sm:flex-row gap-8">
+
+                <!-- Organization Images (Left) - Warna placeholder disesuaikan -->
+                <div class="w-full sm:w-1/2 grid grid-cols-2 gap-1">
+                    <img src="img/PB01.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <img src="img/PB02.JPG" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <img src="img/PSM01.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                    <img src="img/PSM02.jpg" alt=""
+                        class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                </div>
+
+                <!-- Organization Timeline (Right) -->
+                <div class="w-full sm:w-1/2 org-timeline-container relative pl-4">
+                    <!-- Garis Waktu Utama -->
+                    <div class="absolute top-0 bottom-0 left-0 timeline-line"></div>
+
+                    <!-- Item 1: Pajappa Bangkeng -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Sep - Dec 2024</p>
+                        <h3 class="text-lg timeline-title">Pajappa Bangkeng</h3>
+                        <p class="timeline-role">Education Volunteers</p>
+                    </div>
+
+                    <!-- Item 2: STARGiS -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Feb - June 2024</p>
+                        <h3 class="text-lg timeline-title">Student Association of Remote Sensing and Geography
+                            Information System (STARGiS)</h3>
+                        <p class="timeline-role">Research and Development Staff</p>
+                    </div>
+
+                    <!-- Item 3: RADARGiS -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Aug - Dec 2023</p>
+                        <h3 class="text-lg timeline-title">Research, Development and Innovation of Remote Sensing and
+                            Geographic Information System (RADARGiS)</h3>
+                        <p class="timeline-role">Cartography Practicum Assistant</p>
+                    </div>
+
+                    <!-- Item 4: UGM Choir -->
+                    <div class="relative mb-3 pl-6">
+                        <div class="timeline-dot absolute"></div>
+                        <p class="text-sm font-semibold text-gray-500">Aug - Dec 2023</p>
+                        <h3 class="text-lg timeline-title">UGM Vocational School Student Choir</h3>
+                        <p class="timeline-role">Sopranino Singer</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Wave/Curve at the bottom (untuk estetika) -->
+    <div class="wave-bottom"></div>
+
+</body>
+
+</html>

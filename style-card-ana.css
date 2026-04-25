@@ -1,0 +1,308 @@
+/* procet gis analyst title */
+.proj-title {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--link-color);
+    margin-bottom: 0.5rem;
+    /* display: inline-block; - Dibiarkan agar garis bawah hanya selebar teks */
+    padding-bottom: 0.25rem;
+}
+
+/* main container of map card */
+.full-page-container {
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* map card */
+.fixed-width-card {
+    width: 85%;
+    height: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border: 2px solid #008080;
+
+    /* vertical distance between image dan card side */
+    padding: 30px 0;
+
+    /* Memastikan gambar berada di tengah secara horizontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* image visual inside map card */
+.fixed-width-card img {
+    /* width n height of the image */
+    width: 90%;
+    height: auto;
+
+    /* Menjaga rasio gambar agar tetap fit secara proporsional */
+    object-fit: contain;
+
+    border: 2px solid #000000;
+    display: block;
+    cursor: zoom-in;
+}
+
+/* main container of menu detail card */
+.menu-detail-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* menu detail card */
+.menu-detail-container-div {
+    background-color: #f1f1f1;
+    width: 50px;
+    height: 50px;
+
+    /* ngatur jarak dan pinggiran container */
+    margin: 20px 5px 20px 5px;
+    border-radius: 50%;
+    border: 2px solid #008080;
+
+    /* ngatur visual text/icon */
+    text-align: center;
+    font-size: 20px;
+    color: #008080;
+
+    /* ngatur posisi icon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    position: relative;
+}
+
+/* Gaya tombol saat konten terbuka (Aktif) */
+.menu-detail-container-div-active {
+    background-color: #008080;
+    /* Warna khas SIG kamu */
+    color: white;
+    /* border-color: #005f5f; */
+}
+
+.menu-detail-container-div::after {
+    content: attr(data-label); /* Mengambil teks dari atribut data-label di HTML */
+    position: absolute;
+    bottom: 120%; /* Muncul di atas tombol (beri jarak 20% dari tinggi tombol) */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Geser ke tengah dan turun sedikit untuk animasi */
+    
+    /* Styling Kotak */
+    background-color: #008080; /* Warna tema GIS kamu */
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    
+    /* Efek Sembunyi */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Agar tidak mengganggu klik */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.menu-detail-container-div::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #008080 transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* EFEK HOVER: Munculkan teks saat disentuh */
+.menu-detail-container-div:hover::after,
+.menu-detail-container-div:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Animasi naik sedikit */
+}
+
+/* container of each menu in menu detail */
+.menu-introduction,
+.menu-rnd {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.menu-tdm {
+    display: flex;
+    width: 85%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* end of container of each menu in menu detail */
+
+/* card inside container of each menu in menu detail */
+.menu-introduction-card,
+.menu-rnd-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    width: 85%;
+    height: auto;
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border: 2px solid #008080;
+}
+
+.menu-tdm-card {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    width: 85%;
+    height: auto;
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border: 2px solid #008080;
+}
+
+/* end of card inside container of each menu in menu detail */
+
+/* container;item;element inside card of each menu in menu detail */
+.introduction-card-header,
+.tdm-card-header,
+.rnd-card-header {
+    /* mengatur panjang dan tinggi header di dalam card  */
+    width: 100%;
+    height: 25px;
+
+    /* mengatur susunan konten di dalam card, bagian header  */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    /* Mengetengahkan Judul */
+    align-items: center;
+    padding: 15px 0;
+    /* mengatur jarak konten di dalam header*/
+
+    border-bottom: 2px solid #008080;
+    /* Garis pemisah tengah -- berhubungan dengan posisi button x*/
+    position: relative;
+}
+
+.introduction-card-title,
+.tdm-card-title,
+.rnd-card-title {
+    margin: 0;
+    color: #008080;
+    font-weight: bold;
+}
+
+.introduction-close-icon,
+.tdm-close-icon,
+.rnd-close-icon {
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #008080;
+    cursor: pointer;
+}
+
+.introduction-card-body,
+.tdm-card-body,
+.rnd-card-body {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    /* Jarak teks ke tepi kartu */
+    box-sizing: border-box;
+    color: #008080;
+    text-align: justify;
+}
+
+/* end of container;item;element inside card of each menu in menu detail */
+
+/* overlay over container of map card */
+.overlay {
+    display: none;
+    /* Sembunyi secara default */
+    position: fixed;
+    z-index: 9999;
+    /* Pastikan di atas segalanya */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Latar hitam transparan */
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    max-width: 90%;
+    max-height: 90%;
+    border: 3px solid white;
+    /* Border putih agar gambar terlihat jelas */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Tombol Close */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* end of overlay over container of map card */
+
+@media (min-width: 768px) {
+
+    /* .proj-title {
+        font-size: 2rem;
+    } */
+    .full-page-container {
+        align-items: center;
+    }
+}
